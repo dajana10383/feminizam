@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feminizam i Rodna Ravnopravnost</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #764ba2;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #764ba2;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: #333;
+        }
+
+        .dropdown-content a:hover {
+            background: #f5f5f5;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 2rem;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Sections */
+        section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 2rem;
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            color: #764ba2;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        section h3 {
+            font-size: 1.8rem;
+            color: #667eea;
+            margin: 2rem 0 1rem;
+        }
+
+        section p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        /* Resources Grid */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .resource-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            color: white;
+            transition: transform 0.3s;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .resource-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .resource-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .resource-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .resource-card li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+        }
+
+        /* Contact Form */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #764ba2;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #764ba2;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 2rem;
+            border-radius: 15px;
+            color: white;
+        }
+
+        .contact-info h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .contact-info p {
+            margin: 1rem 0;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .social-links a:hover {
+            background: rgba(255,255,255,0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(255,255,255,0.95);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: #4caf50;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particles-canvas"></canvas>
+
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">♀</div>
+                <span>Feminizam</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Početna</a></li>
+                    <li class="dropdown">
+                        <a href="#teme">Teme ▾</a>
+                        <div class="dropdown-content">
+                            <a href="#istorija">Istorija feminizma</a>
+                            <a href="#plata">Razlika u platama</a>
+                            <a href="#nasilje">Nasilje nad ženama</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#izazovi">Izazovi ▾</a>
+                        <div class="dropdown-content">
+                            <a href="#stereotipi">Stereotipi</a>
+                            <a href="#diskriminacija">Diskriminacija</a>
+                            <a href="#obrazovanje">Obrazovanje</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#resursi">Resursi ▾</a>
+                        <div class="dropdown-content">
+                            <a href="#edukacija">Edukacija</a>
+                            <a href="#organizacije">Organizacije</a>
+                        </div>
+                    </li>
+                    <li><a href="#kontakt">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero" id="home">
+        <div class="hero-content">
+            <h1>Feminizam i Rodna Ravnopravnost</h1>
+            <p>Borimo se za jednaka prava, mogućnosti i dostojanstvo svih ljudi bez obzira na pol. Zajedno gradimo pravednije društvo.</p>
+        </div>
+        <div class="hero-image">
+            ✊
+        </div>
+    </div>
+
+    <section id="sta-je">
+        <h2>Šta je Feminizam</h2>
+        <p>Feminizam je društveni, politički i ekonomski pokret koji se zalaže za jednakost polova i eliminaciju diskriminacije zasnovane na polu. To je uvjerenje da svi ljudi, bez obzira na pol, zaslužuju jednaka prava, mogućnosti i tretman u svim aspektima života.</p>
+        
+        <p>Feminizam se fokusira na osnaživanje žena i marginalizovanih rodnih identiteta, priznajući istorijsku i sistemsku nejednakost kojoj su bili izloženi. Cilj nije superiornost jednog pola nad drugim, već stvaranje društva u kojem svako može dostići svoj puni potencijal.</p>
+        
+        <p>Savremeni feminizam kombinuje aktivizam, edukaciju i zagovaranje politika koje promovišu rodnu ravnopravnost. To uključuje borbu za jednake plate, pristup obrazovanju, reproduktivna prava, zaštitu od nasilja i pravičnu zastupljenost u svim sferama društva.</p>
+    </section>
+
+    <section id="zasto-vazno">
+        <h2>Zašto je Rodna Ravnopravnost Važna</h2>
+        <p>Rodna ravnopravnost nije luksuz - to je osnovsko ljudsko pravo i ključni preduslov za miran, prosperitetan i održiv svet. Društva koja uvažavaju i promovišu ravnopravnost polova bilježe bolji ekonomski razvoj, manje nasilja i veću društvenu koheziju.</p>
+        
+        <p>Diskriminacija po osnovu pola šteti svima. Kada se ženama uskraćuju jednake mogućnosti u obrazovanju i karijeri, društvo gubi ogroman potencijal talenta i inovacija. Rodna neravnopravnost produbljuje siromaštvo, ograničava ekonomski rast i perpetuira nasilje.</p>
+        
+        <p>Investiranje u rodnu ravnopravnost kroz pravedne zakone, ravnopravno obrazovanje, zaštitu od diskriminacije i promenu društvenih normi donosi koristi celom društvu. Kada su žene osnažene, unapređuje se zdravlje i obrazovanje buduć ih generacija, smanjuje se nasilje i podstiče se održivi razvoj.</p>
+    </section>
+
+    <section id="resursi">
+        <h2>Resursi i Edukacija</h2>
+        <p>Edukacija je najmoćnije oružje koje možemo koristiti da promenimo svet. Ovde možete pronaći resurse koji će vam pomoći da razumete izazove, naučite najbolje prakse i ostanete informisani o napretku ka rodnoj ravnopravnosti.</p>
+        
+        <div class="resources-grid">
+            <div class="resource-card">
+                <h4>Vodiči i Tutorijali</h4>
+                <p>Naučite osnove feminizma kroz struktuirane vodiče dizajnirane za sve koji žele da se edukuju.</p>
+                <ul>
+                    <li>Uvod u feminizam za početnike</li>
+                    <li>Prepoznavanje rodnih stereotipa</li>
+                    <li>Kako postati saveznik</li>
+                </ul>
+            </div>
+            
+            <div class="resource-card">
+                <h4>Organizacije i Podrška</h4>
+                <p>Upoznajte organizacije koje se bave zaštitom prava žena i pružaju podršku.</p>
+                <ul>
+                    <li>SOS telefoni za žene</li>
+                    <li>Sigurne kuće i skloništa</li>
+                    <li>Pravna pomoć i savetovanje</li>
+                </ul>
+            </div>
+            
+            <div class="resource-card">
+                <h4>Istraživanja i Statistike</h4>
+                <p>Budite informisani o trenutnom stanju rodne ravnopravnosti kroz pouzdane izvore podataka.</p>
+                <ul>
+                    <li>Godišnji izveštaji o rodnom jazzu</li>
+                    <li>Statistike o nasilju nad ženama</li>
+                    <li>Ekonomska analiza neravnopravnosti</li>
+                </ul>
+            </div>
+            
+            <div class="resource-card">
+                <h4>Standardi i Zakoni</h4>
+                <p>Upoznajte zakonske okvire i međunarodne standarde koji štite ravnopravnost.</p>
+                <ul>
+                    <li>Konvencija o eliminaciji diskriminacije</li>
+                    <li>Zakon o ravnopravnosti polova</li>
+                    <li>Međunarodni standardi rada</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="kontakt">
+        <h2>Kontaktirajte Nas</h2>
+        <div class="contact-container">
+            <div>
+                <p style="margin-bottom: 2rem;">Imate pitanja ili želite da se uključite? Pošaljite nam poruku i javićemo vam se u najkraćem roku.</p>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Ime i prezime</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email adresa</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Naslov</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Poruka</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Pošalji Poruku</button>
+                    <div class="success-message" id="successMessage">
+                        Vaša poruka je uspešno poslata! Javićemo vam se uskoro.
+                    </div>
+                </form>
+            </div>
+            <div class="contact-info">
+                <h3>Kontakt Informacije</h3>
+                <p><strong>Email:</strong> info@feminizam.rs</p>
+                <p><strong>Telefon:</strong> +381 11 123 4567</p>
+                <p><strong>Adresa:</strong> Kneza Miloša 42, Beograd</p>
+                <div class="social-links">
+                    <a href="#" title="Twitter">T</a>
+                    <a href="#" title="Facebook">F</a>
+                    <a href="#" title="Instagram">I</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 Feminizam i Rodna Ravnopravnost. Sva prava zadržana.</p>
+            <div class="social-links">
+                <a href="#">T</a>
+                <a href="#">F</a>
+                <a href="#">I</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Particle Animation
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const particleCount = 100;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = Math.random() * 2 + 1;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            // Connect nearby particles
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 100) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.2 * (1 - distance / 100)})`;
+                        ctx.lineWidth = 1;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Smooth Scrolling
+        $('a[href^="#"]').on('click', function(e) {
+            e.preventDefault();
+            const target = $(this.getAttribute('href'));
+            if (target.length) {
+                $('html, body').stop().animate({
+                    scrollTop: target.offset().top - 80
+                }, 800);
+            }
+        });
+
+        // Contact Form with AJAX
+        $('#contactForm').on('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: $('#name').val(),
+                email: $('#email').val(),
+                subject: $('#subject').val(),
+                message: $('#message').val()
+            };
+
+            // Simulate AJAX request
+            setTimeout(() => {
+                $('#successMessage').fadeIn();
+                $('#contactForm')[0].reset();
+                
+                setTimeout(() => {
+                    $('#successMessage').fadeOut();
+                }, 5000);
+            }, 500);
+
+            /* Real AJAX would look like this:
+            $.ajax({
+                url: 'your-backend-url.php',
+                method: 'POST',
+                data: formData,
+                success: function(response) {
+                    $('#successMessage').fadeIn();
+                    $('#contactForm')[0].reset();
+                },
+                error: function(error) {
+                    alert('Došlo je do greške. Molimo pokušajte ponovo.');
+                }
+            });
+            */
+        });
+
+        // Fade-in animation on scroll
+        $(window).on('scroll', function() {
+            $('section').each(function() {
+                const elementTop = $(this).offset().top;
+                const viewportBottom = $(window).scrollTop() + $(window).height();
+                
+                if (viewportBottom > elementTop + 100) {
+                    $(this).css({
+                        'opacity': '1',
+                        'transform': 'translateY(0)'
+                    });
+                }
+            });
+        });
+
+        // Initial section styling for animation
+        $('section').css({
+            'opacity': '0',
+            'transform': 'translateY(30px)',
+            'transition': 'all 0.6s ease-out'
+        });
+    </script>
+</body>
+</html>
