@@ -150,8 +150,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 8rem;
             backdrop-filter: blur(10px);
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
         }
 
         /* Sections */
@@ -338,25 +345,6 @@
             align-items: center;
         }
 
-        .hero-image {
-            width: 100%;
-            height: 400px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(10px);
-            overflow: hidden;
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 20px;
-        }
-
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .header-content {
@@ -445,7 +433,7 @@
             <p>Borimo se za jednaka prava, mogućnosti i dostojanstvo svih ljudi bez obzira na pol. Zajedno gradimo pravednije društvo.</p>
         </div>
         <div class="hero-image">
-            ✊
+            <img src="feminism-hero.jpg" alt="What does feminism mean to you?" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:8rem\'>✊</div>'">
         </div>
     </div>
 
