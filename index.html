@@ -564,7 +564,8 @@
                 this.y = Math.random() * canvas.height;
                 this.vx = (Math.random() - 0.5) * 0.5;
                 this.vy = (Math.random() - 0.5) * 0.5;
-                this.radius = Math.random() * 2 + 1;
+                this.size = Math.random() * 15 + 10;
+                this.opacity = Math.random() * 0.3 + 0.2;
             }
 
             update() {
@@ -576,10 +577,9 @@
             }
 
             draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
-                ctx.fill();
+                ctx.font = `${this.size}px Arial`;
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.fillText('♀', this.x, this.y);
             }
         }
 
