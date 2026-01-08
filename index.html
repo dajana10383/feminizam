@@ -17,32 +17,34 @@
             line-height: 1.6;
             color: #333;
             overflow-x: hidden;
+            background: #0a0a0a;
         }
 
-        /* Animated Background */
-        #particles-canvas {
+        /* Animated Background with Female Symbols */
+        #symbol-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            z-index: 0;
+            background: linear-gradient(135deg, #1a0a2e 0%, #3d1f5c 50%, #5a2d7a 100%);
         }
 
         /* Header */
         header {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: rgba(10, 10, 10, 0.95);
+            box-shadow: 0 2px 20px rgba(138, 43, 226, 0.3);
             position: sticky;
             top: 0;
             z-index: 1000;
+            backdrop-filter: blur(10px);
         }
 
         .header-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 1.5rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -54,37 +56,56 @@
             gap: 1rem;
             font-size: 1.5rem;
             font-weight: bold;
-            color: #764ba2;
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .logo-icon {
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.8rem;
+            font-size: 2rem;
+            box-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
         }
 
         nav ul {
             list-style: none;
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         nav a {
             text-decoration: none;
-            color: #333;
+            color: #e0e0e0;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: all 0.3s;
             position: relative;
         }
 
         nav a:hover {
-            color: #764ba2;
+            color: #ff6b9d;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ff6b9d, #c44569);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
         }
 
         .dropdown {
@@ -96,12 +117,13 @@
             position: absolute;
             top: 100%;
             left: 0;
-            background: white;
-            min-width: 200px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border-radius: 8px;
+            background: rgba(10, 10, 10, 0.98);
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(255, 107, 157, 0.2);
+            border-radius: 12px;
             padding: 0.5rem 0;
             margin-top: 0.5rem;
+            border: 1px solid rgba(255, 107, 157, 0.2);
         }
 
         .dropdown:hover .dropdown-content {
@@ -111,130 +133,200 @@
         .dropdown-content a {
             display: block;
             padding: 0.75rem 1.5rem;
-            color: #333;
+            color: #e0e0e0;
         }
 
         .dropdown-content a:hover {
-            background: #f5f5f5;
+            background: rgba(255, 107, 157, 0.1);
         }
 
         /* Hero Section */
         .hero {
-            max-width: 1200px;
-            margin: 4rem auto;
-            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 8rem 2rem;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: 4rem;
             align-items: center;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-content h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: white;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 30px rgba(255, 107, 157, 0.5);
+            line-height: 1.2;
         }
 
         .hero-content p {
-            font-size: 1.2rem;
-            color: rgba(255,255,255,0.95);
-            margin-bottom: 2rem;
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
         }
 
         .hero-image {
             width: 100%;
-            height: 400px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 20px;
+            height: 450px;
+            background: rgba(255, 107, 157, 0.05);
+            border-radius: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 8rem;
+            font-size: 12rem;
             backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 107, 157, 0.2);
+            box-shadow: 0 0 50px rgba(255, 107, 157, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 30px;
+            padding: 2px;
+            background: linear-gradient(135deg, #ff6b9d, #c44569, #8b3f8f);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.3;
         }
 
         /* Sections */
         section {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 4rem auto;
-            padding: 2rem;
-            background: rgba(255,255,255,0.95);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 4rem 2rem;
+            background: rgba(10, 10, 10, 0.85);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(255, 107, 157, 0.1);
+            backdrop-filter: blur(10px);
         }
 
         section h2 {
-            font-size: 2.5rem;
-            color: #764ba2;
-            margin-bottom: 2rem;
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2.5rem;
             text-align: center;
         }
 
         section h3 {
-            font-size: 1.8rem;
-            color: #667eea;
-            margin: 2rem 0 1rem;
+            font-size: 2rem;
+            color: #ff6b9d;
+            margin: 2.5rem 0 1.5rem;
         }
 
         section p {
-            margin-bottom: 1rem;
-            text-align: justify;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
 
         /* Resources Grid */
         .resources-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
             margin-top: 3rem;
         }
 
         .resource-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 2rem;
-            border-radius: 15px;
-            color: white;
-            transition: transform 0.3s;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(196, 69, 105, 0.1));
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 107, 157, 0.2);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.2), rgba(196, 69, 105, 0.2));
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
         .resource-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 107, 157, 0.3);
+        }
+
+        .resource-card:hover::before {
+            opacity: 1;
         }
 
         .resource-card h4 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin-bottom: 1rem;
+            color: #ff6b9d;
+            position: relative;
+            z-index: 1;
+        }
+
+        .resource-card p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         .resource-card ul {
             list-style: none;
             padding-left: 0;
+            position: relative;
+            z-index: 1;
         }
 
         .resource-card li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
+            padding: 0.75rem 0;
+            padding-left: 2rem;
             position: relative;
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .resource-card li:before {
             content: "→";
             position: absolute;
             left: 0;
+            color: #ff6b9d;
+            font-weight: bold;
         }
 
         /* Contact Form */
         .contact-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: 4rem;
+        }
+
+        .contact-intro {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
         }
 
         .contact-form {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.5rem;
         }
 
         .form-group {
@@ -243,24 +335,29 @@
         }
 
         .form-group label {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
             font-weight: 500;
-            color: #764ba2;
+            color: #ff6b9d;
+            font-size: 1.1rem;
         }
 
         .form-group input,
         .form-group textarea {
-            padding: 0.75rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
+            padding: 1rem;
+            border: 2px solid rgba(255, 107, 157, 0.2);
+            border-radius: 12px;
             font-size: 1rem;
-            transition: border-color 0.3s;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            transition: all 0.3s;
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #764ba2;
+            border-color: #ff6b9d;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 20px rgba(255, 107, 157, 0.2);
         }
 
         .form-group textarea {
@@ -269,93 +366,129 @@
         }
 
         .submit-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
             color: white;
-            padding: 1rem 2rem;
+            padding: 1.25rem 2.5rem;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
         }
 
         .submit-btn:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.5);
         }
 
         .contact-info {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            padding: 2rem;
-            border-radius: 15px;
-            color: white;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(196, 69, 105, 0.1));
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 107, 157, 0.2);
         }
 
         .contact-info h3 {
-            color: white;
+            color: #ff6b9d;
             margin-top: 0;
+            font-size: 2rem;
         }
 
         .contact-info p {
-            margin: 1rem 0;
+            margin: 1.5rem 0;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .contact-info strong {
+            color: #ff6b9d;
         }
 
         .social-links {
             display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
         }
 
         .social-links a {
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.2);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 107, 157, 0.1);
+            border: 2px solid rgba(255, 107, 157, 0.3);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: #ff6b9d;
             text-decoration: none;
-            transition: background 0.3s;
+            font-weight: bold;
+            transition: all 0.3s;
         }
 
         .social-links a:hover {
-            background: rgba(255,255,255,0.4);
+            background: rgba(255, 107, 157, 0.2);
+            border-color: #ff6b9d;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
         }
 
         /* Footer */
         footer {
-            background: rgba(255,255,255,0.95);
-            padding: 2rem;
+            background: rgba(10, 10, 10, 0.95);
+            padding: 3rem 2rem;
             text-align: center;
             margin-top: 4rem;
+            border-top: 1px solid rgba(255, 107, 157, 0.2);
+            position: relative;
+            z-index: 1;
         }
 
         .footer-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #4caf50, #45a049);
+            color: white;
+            padding: 1.25rem;
+            border-radius: 12px;
+            margin-top: 1.5rem;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
         }
 
         /* Mobile Responsive */
-        @media (max-width: 768px) {
+        @media (max-width: 968px) {
             .header-content {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 1.5rem;
             }
 
             nav ul {
                 flex-direction: column;
                 gap: 1rem;
+                text-align: center;
             }
 
             .hero {
                 grid-template-columns: 1fr;
+                padding: 4rem 2rem;
             }
 
             .hero-content h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
+            }
+
+            .hero-image {
+                height: 300px;
+                font-size: 8rem;
             }
 
             .contact-container {
@@ -364,23 +497,29 @@
 
             .footer-content {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 1.5rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
             }
         }
 
-        /* Success Message */
-        .success-message {
-            display: none;
-            background: #4caf50;
-            color: white;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-top: 1rem;
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <canvas id="particles-canvas"></canvas>
+    <canvas id="symbol-canvas"></canvas>
 
     <header>
         <div class="header-content">
@@ -394,24 +533,25 @@
                     <li class="dropdown">
                         <a href="#teme">Teme ▾</a>
                         <div class="dropdown-content">
-                            <a href="#istorija">Istorija feminizma</a>
-                            <a href="#plata">Razlika u platama</a>
-                            <a href="#nasilje">Nasilje nad ženama</a>
+                            <a href="#sta-je">Šta je Feminizam</a>
+                            <a href="#zasto-vazno">Zašto je Važno</a>
+                            <a href="#resursi">Resursi</a>
                         </div>
                     </li>
                     <li class="dropdown">
                         <a href="#izazovi">Izazovi ▾</a>
                         <div class="dropdown-content">
-                            <a href="#stereotipi">Stereotipi</a>
-                            <a href="#diskriminacija">Diskriminacija</a>
-                            <a href="#obrazovanje">Obrazovanje</a>
+                            <a href="#sta-je">Neravnopravnost</a>
+                            <a href="#zasto-vazno">Diskriminacija</a>
+                            <a href="#resursi">Nasilje</a>
                         </div>
                     </li>
                     <li class="dropdown">
                         <a href="#resursi">Resursi ▾</a>
                         <div class="dropdown-content">
-                            <a href="#edukacija">Edukacija</a>
-                            <a href="#organizacije">Organizacije</a>
+                            <a href="#resursi">Edukacija</a>
+                            <a href="#resursi">Organizacije</a>
+                            <a href="#resursi">Standardi</a>
                         </div>
                     </li>
                     <li><a href="#kontakt">Kontakt</a></li>
@@ -423,32 +563,32 @@
     <div class="hero" id="home">
         <div class="hero-content">
             <h1>Feminizam i Rodna Ravnopravnost</h1>
-            <p>Borimo se za jednaka prava, mogućnosti i dostojanstvo svih ljudi bez obzira na pol. Zajedno gradimo pravednije društvo.</p>
+            <p>Borimo se za jednaka prava, mogućnosti i dostojanstvo svih ljudi bez obzira na pol. Zajedno gradimo pravednije društvo gde svako može dostići svoj puni potencijal.</p>
         </div>
         <div class="hero-image">
             ✊
         </div>
     </div>
 
-    <section id="sta-je">
+    <section id="sta-je" class="fade-in">
         <h2>Šta je Feminizam</h2>
-        <p>Feminizam je društveni, politički i ekonomski pokret koji se zalaže za jednakost polova i eliminaciju diskriminacije zasnovane na polu. To je uvjerenje da svi ljudi, bez obzira na pol, zaslužuju jednaka prava, mogućnosti i tretman u svim aspektima života.</p>
+        <p>Feminizam je društveni, politički i ekonomski pokret koji se zalaže za jednakost polova i eliminaciju diskriminacije zasnovane na polu. To je uverenje da svi ljudi, bez obzira na pol, zaslužuju jednaka prava, mogućnosti i tretman u svim aspektima života.</p>
         
         <p>Feminizam se fokusira na osnaživanje žena i marginalizovanih rodnih identiteta, priznajući istorijsku i sistemsku nejednakost kojoj su bili izloženi. Cilj nije superiornost jednog pola nad drugim, već stvaranje društva u kojem svako može dostići svoj puni potencijal.</p>
         
-        <p>Savremeni feminizam kombinuje aktivizam, edukaciju i zagovaranje politika koje promovišu rodnu ravnopravnost. To uključuje borbu za jednake plate, pristup obrazovanju, reproduktivna prava, zaštitu od nasilja i pravičnu zastupljenost u svim sferama društva.</p>
+        <p>Savremeni feminizam kombinuje aktivizam, edukaciju i zagovaranje politika koje promovisšu rodnu ravnopravnost. To uključuje borbu za jednake plate, pristup obrazovanju, reproduktivna prava, zaštitu od nasilja i pravičnu zastupljenost u svim sferama društva.</p>
     </section>
 
-    <section id="zasto-vazno">
+    <section id="zasto-vazno" class="fade-in">
         <h2>Zašto je Rodna Ravnopravnost Važna</h2>
-        <p>Rodna ravnopravnost nije luksuz - to je osnovsko ljudsko pravo i ključni preduslov za miran, prosperitetan i održiv svet. Društva koja uvažavaju i promovišu ravnopravnost polova bilježe bolji ekonomski razvoj, manje nasilja i veću društvenu koheziju.</p>
+        <p>Rodna ravnopravnost nije luksuz - to je osnovno ljudsko pravo i ključni preduslov za miran, prosperitetan i održiv svet. Društva koja uvažavaju i promovisšu ravnopravnost polova bilježe bolji ekonomski razvoj, manje nasilja i veću društvenu koheziju.</p>
         
         <p>Diskriminacija po osnovu pola šteti svima. Kada se ženama uskraćuju jednake mogućnosti u obrazovanju i karijeri, društvo gubi ogroman potencijal talenta i inovacija. Rodna neravnopravnost produbljuje siromaštvo, ograničava ekonomski rast i perpetuira nasilje.</p>
         
-        <p>Investiranje u rodnu ravnopravnost kroz pravedne zakone, ravnopravno obrazovanje, zaštitu od diskriminacije i promenu društvenih normi donosi koristi celom društvu. Kada su žene osnažene, unapređuje se zdravlje i obrazovanje buduć ih generacija, smanjuje se nasilje i podstiče se održivi razvoj.</p>
+        <p>Investiranje u rodnu ravnopravnost kroz pravedne zakone, ravnopravno obrazovanje, zaštitu od diskriminacije i promenu društvenih normi donosi koristi celom društvu. Kada su žene osnažene, unapređuje se zdravlje i obrazovanje budućih generacija, smanjuje se nasilje i podstiče se održivi razvoj.</p>
     </section>
 
-    <section id="resursi">
+    <section id="resursi" class="fade-in">
         <h2>Resursi i Edukacija</h2>
         <p>Edukacija je najmoćnije oružje koje možemo koristiti da promenimo svet. Ovde možete pronaći resurse koji će vam pomoći da razumete izazove, naučite najbolje prakse i ostanete informisani o napretku ka rodnoj ravnopravnosti.</p>
         
@@ -495,11 +635,11 @@
         </div>
     </section>
 
-    <section id="kontakt">
+    <section id="kontakt" class="fade-in">
         <h2>Kontaktirajte Nas</h2>
         <div class="contact-container">
             <div>
-                <p style="margin-bottom: 2rem;">Imate pitanja ili želite da se uključite? Pošaljite nam poruku i javićemo vam se u najkraćem roku.</p>
+                <p class="contact-intro">Imate pitanja ili želite da se uključite? Pošaljite nam poruku i javićemo vam se u najkraćem roku.</p>
                 <form class="contact-form" id="contactForm">
                     <div class="form-group">
                         <label for="name">Ime i prezime</label>
@@ -549,149 +689,87 @@
     </footer>
 
     <script>
-        // Particle Animation
-        const canvas = document.getElementById('particles-canvas');
+        // Female Symbol Animation Canvas
+        const canvas = document.getElementById('symbol-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        const particles = [];
-        const particleCount = 100;
+        const symbols = [];
+        const symbolCount = 40;
 
-        class Particle {
+        class FemaleSymbol {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.radius = Math.random() * 2 + 1;
+                this.size = Math.random() * 40 + 20;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.rotationSpeed = (Math.random() - 0.5) * 0.02;
+                this.opacity = Math.random() * 0.3 + 0.1;
+                this.pulseSpeed = Math.random() * 0.02 + 0.01;
+                this.pulsePhase = Math.random() * Math.PI * 2;
             }
 
             update() {
-                this.x += this.vx;
-                this.y += this.vy;
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.rotation += this.rotationSpeed;
+                this.pulsePhase += this.pulseSpeed;
 
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+                if (this.x < -50 || this.x > canvas.width + 50) this.speedX *= -1;
+                if (this.y < -50 || this.y > canvas.height + 50) this.speedY *= -1;
             }
 
             draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
-                ctx.fill();
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+                
+                const pulse = Math.sin(this.pulsePhase) * 0.2 + 1;
+                const currentSize = this.size * pulse;
+                
+                ctx.font = `${currentSize}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                
+                const gradient = ctx.createLinearGradient(0, -currentSize/2, 0, currentSize/2);
+                gradient.addColorStop(0, `rgba(255, 107, 157, ${this.opacity})`);
+                gradient.addColorStop(0.5, `rgba(196, 69, 105, ${this.opacity})`);
+                gradient.addColorStop(1, `rgba(139, 63, 143, ${this.opacity})`);
+                
+                ctx.fillStyle = gradient;
+                ctx.fillText('♀', 0, 0);
+                
+                ctx.restore();
             }
         }
 
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
+        for (let i = 0; i < symbolCount; i++) {
+            symbols.push(new FemaleSymbol());
         }
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
+            symbols.forEach(symbol => {
+                symbol.update();
+                symbol.draw();
             });
 
-            // Connect nearby particles
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
+            // Draw connections between nearby symbols
+            for (let i = 0; i < symbols.length; i++) {
+                for (let j = i + 1; j < symbols.length; j++) {
+                    const dx = symbols[i].x - symbols[j].x;
+                    const dy = symbols[i].y - symbols[j].y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
 
-                    if (distance < 100) {
+                    if (distance < 200) {
                         ctx.beginPath();
-                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.2 * (1 - distance / 100)})`;
+                        const opacity = (1 - distance / 200) * 0.1;
+                        ctx.strokeStyle = `rgba(255, 107, 157, ${opacity})`;
                         ctx.lineWidth = 1;
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.moveTo(symbols[i].x, symbols[i].y);
+                        ctx.lineTo(symbols[j].x, symbols[j].y);
                         ctx.stroke();
-                    }
-                }
-            }
-
-            requestAnimationFrame(animate);
-        }
-
-        animate();
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        // Smooth Scrolling
-        $('a[href^="#"]').on('click', function(e) {
-            e.preventDefault();
-            const target = $(this.getAttribute('href'));
-            if (target.length) {
-                $('html, body').stop().animate({
-                    scrollTop: target.offset().top - 80
-                }, 800);
-            }
-        });
-
-        // Contact Form with AJAX
-        $('#contactForm').on('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = {
-                name: $('#name').val(),
-                email: $('#email').val(),
-                subject: $('#subject').val(),
-                message: $('#message').val()
-            };
-
-            // Simulate AJAX request
-            setTimeout(() => {
-                $('#successMessage').fadeIn();
-                $('#contactForm')[0].reset();
-                
-                setTimeout(() => {
-                    $('#successMessage').fadeOut();
-                }, 5000);
-            }, 500);
-
-            /* Real AJAX would look like this:
-            $.ajax({
-                url: 'your-backend-url.php',
-                method: 'POST',
-                data: formData,
-                success: function(response) {
-                    $('#successMessage').fadeIn();
-                    $('#contactForm')[0].reset();
-                },
-                error: function(error) {
-                    alert('Došlo je do greške. Molimo pokušajte ponovo.');
-                }
-            });
-            */
-        });
-
-        // Fade-in animation on scroll
-        $(window).on('scroll', function() {
-            $('section').each(function() {
-                const elementTop = $(this).offset().top;
-                const viewportBottom = $(window).scrollTop() + $(window).height();
-                
-                if (viewportBottom > elementTop + 100) {
-                    $(this).css({
-                        'opacity': '1',
-                        'transform': 'translateY(0)'
-                    });
-                }
-            });
-        });
-
-        // Initial section styling for animation
-        $('section').css({
-            'opacity': '0',
-            'transform': 'translateY(30px)',
-            'transition': 'all 0.6s ease-out'
-        });
-    </script>
-</body>
-</html>
